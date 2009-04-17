@@ -8,7 +8,6 @@ example how to write a simple blog application in Django :-)
 
 The documentation is non-existant, but this may change in the future.
 
-------------
 Dependencies
 ------------
  * My own fork of
@@ -16,7 +15,6 @@ Dependencies
  * akismet
  * Python Imagin Library
 
--------
 License
 -------
 
