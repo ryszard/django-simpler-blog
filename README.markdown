@@ -1,5 +1,5 @@
-This is a small blog djangoapp I use in [http://gryziemy.net/] and
-[http://balkonetka.pl/]. There aren't a lot of bells and whistles, but
+This is a small blog djangoapp I use in [Gryziemy.net](http://gryziemy.net/) and
+[Balkonetka](http://balkonetka.pl/). There aren't a lot of bells and whistles, but
 it does its task. Entry creation and editing is done through Django's
 admin interface. I decided to put in its own project to avoid code duplication.
 
@@ -12,7 +12,8 @@ Dependencies
 ------------
  * My own fork of
    [django-comment-utils](https://github.com/ryszard/django-comment-utils/tree)
- * akismet
+ * My own fork of [django-tagging](https://github.com/ryszard/django-tagging/tree)
+ * akismet.py
  * Python Imagin Library
 
 License
