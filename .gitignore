@@ -1,0 +1,6 @@
+*pyc
+/.com.apple.timemachine.supported
+\#*\#
+.hg
+.svn
+.hg*
