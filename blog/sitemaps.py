@@ -1,5 +1,5 @@
 from django.contrib.sitemaps import Sitemap
-from balkonetka.blog.models import Entry
+from models import Entry
 
 class BlogSitemap(Sitemap):
     changefreq = "never"

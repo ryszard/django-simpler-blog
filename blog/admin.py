@@ -1,4 +1,4 @@
-from balkonetka.blog.models import Entry, Category, Image
+from models import Entry, Category, Image
 from django.contrib import admin
 
 class ImageInline(admin.StackedInline):
