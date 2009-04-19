@@ -2,7 +2,7 @@ from django import template
 import re
 
 from utils import get_x_as_y_tag
-from balkonetka.blog.models import Category
+from blog.models import Category
 
 
 register = template.Library()
