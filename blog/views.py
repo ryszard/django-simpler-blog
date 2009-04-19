@@ -7,6 +7,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.html import escape
 from django.http import HttpResponseRedirect
+from django.http import Http404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.admin.views.decorators import staff_member_required
 from django.views.decorators.http import require_POST
@@ -29,7 +30,10 @@ def tag_entry_detail_view(request, slug, *args, **kwargs):
                        *args, **kwargs)
 
 def category_detail_view(request, slug, *args, **kwargs):
-    category = Category.objects.select_related().get(slug=slug)
+    try:
+        category = Category.objects.select_related().get(slug=slug)
+    except Category.DoesNotExist:
+        raise Http404
     queryset = category.entries_set
     try:
         kwargs['extra_context']['category'] = category
