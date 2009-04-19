@@ -13,8 +13,8 @@ Dependencies
  * My own fork of
    [django-comment-utils](https://github.com/ryszard/django-comment-utils/tree)
  * My own fork of [django-tagging](https://github.com/ryszard/django-tagging/tree)
- * akismet.py
- * Python Imagin Library
+ * [akismet.py](http://www.voidspace.org.uk/python/modules.shtml#akismet)
+ * Python Imaging Library
 
 License
 -------
