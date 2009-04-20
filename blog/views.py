@@ -18,7 +18,10 @@ from django.template import RequestContext
 from django.contrib.comments.views.utils import next_redirect
 
 def tag_entry_detail_view(request, slug, *args, **kwargs):
-    tag = Tag.objects.get(slug=slug)
+    try:
+        tag = Tag.objects.get(slug=slug)
+    except Tag.MultipleObjectsReturned:
+        tag = Tag.objects.filter(slug=slug)[0]
     queryset = TaggedItem.objects.get_by_model(Entry, tag).filter(draft=False).all()
     try:
         kwargs['extra_context']['tag'] = tag
