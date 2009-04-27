@@ -22,6 +22,8 @@ def tag_entry_detail_view(request, slug, *args, **kwargs):
         tag = Tag.objects.get(slug=slug)
     except Tag.MultipleObjectsReturned:
         tag = Tag.objects.filter(slug=slug)[0]
+    except Tag.DoesNotExist:
+        raise Http404
     queryset = TaggedItem.objects.get_by_model(Entry, tag).filter(draft=False).all()
     try:
         kwargs['extra_context']['tag'] = tag
