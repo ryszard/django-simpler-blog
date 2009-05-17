@@ -19,7 +19,7 @@ urlpatterns = patterns('',
                        )
 
 urlpatterns += patterns('django.views.generic',
-                        url('^$', 'list_detail.object_list', dict(queryset=Entry.public.order_by('-published'), paginate_by=getattr(settings, 'SET_DETAILS_ENTRIES_PER_PAGE', 3)), name='blog-index'),
+                        url('^$', 'list_detail.object_list', dict(queryset=Entry.public.order_by('-published'), paginate_by=getattr(settings, 'SET_DETAILS_ENTRIES_PER_PAGE', 1)), name='blog-index'),
                         url(r'^(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})/(?P<slug>[\w\-]+)/?$',
                             'date_based.object_detail', dict(queryset=Entry.public.all(), month_format='%m', date_field='published'), name='blog-entry'),
 )
