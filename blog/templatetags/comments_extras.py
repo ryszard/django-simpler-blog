@@ -39,5 +39,5 @@ def get_recent_comments(args, var_name):
         model_name, number = [a.strip() for a in args.split(',')]
         number = int(number)
     except ValueError:
-        raise template.TemplateSyntaxError, "%r tag's argument should be a number" % tag_name
+        raise template.TemplateSyntaxError, "Wrong arguments given to tag get_recent_comments."
     return GetRecentCommentsNode(model_name, number, var_name)
