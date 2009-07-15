@@ -1,6 +1,5 @@
 # Create your views here.
-from tagging.models import TaggedItem, Tag
-from models import Entry, Category
+from models import Entry
 from django.views.generic.list_detail import object_list, object_detail
 from django.contrib.comments.views.comments import CommentPostBadRequest, comment_done
 from django.conf import settings
@@ -17,52 +16,11 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.comments.views.utils import next_redirect
 
-def tag_entry_detail_view(request, slug, *args, **kwargs):
-    try:
-        tag = Tag.objects.get(slug=slug)
-    except Tag.MultipleObjectsReturned:
-        tag = Tag.objects.filter(slug=slug)[0]
-    except Tag.DoesNotExist:
-        raise Http404
-    queryset = TaggedItem.objects.get_by_model(Entry, tag).filter(draft=False).all()
-    try:
-        kwargs['extra_context']['tag'] = tag
-    except KeyError:
-        kwargs['extra_context'] = {'tag': tag}
-    queryset._clone = lambda: queryset
-    return object_list(request, queryset, template_name='blog/tag_detail.html',
-                       paginate_by=settings.SET_DETAILS_ENTRIES_PER_PAGE,
-                       *args, **kwargs)
 
-def category_detail_view(request, slug, *args, **kwargs):
-    try:
-        category = Category.objects.select_related().get(slug=slug)
-    except Category.DoesNotExist:
-        raise Http404
-    queryset = category.entries_set
-    try:
-        kwargs['extra_context']['category'] = category
-    except KeyError:
-        kwargs['extra_context'] = {'category': category}
-
-    if category.entries_ordering != 'title':
-        kwargs['paginate_by'] = settings.SET_DETAILS_ENTRIES_PER_PAGE
-
-    return object_list(request, queryset, template_name='blog/category_detail.html', *args, **kwargs)
 
 @staff_member_required
 def preview(request, object_id):
    return object_detail(request, object_id=object_id, queryset=Entry.objects.all())
-
-# def my_post_comment(request):
-#     try:
-#         next = request.POST['next']
-#     except KeyError:
-#         next = request.GET['next']
-#     return post_comment(request, next=next)
-
-# Copy and Paste to the resque. Let's just hope
-# django.contrib.comments gets some love in the next release.
 
 @require_POST
 def post_comment(request, next=None):
