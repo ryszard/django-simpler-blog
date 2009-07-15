@@ -31,7 +31,7 @@ class Entry(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('blog-entry', (), dict(year=self.published.year, month=self.published.month, day=self.published.day, slug=self.slug))
+        return ('blog-entry', (), dict(year=self.published.year, month=self.published.strftime("%b"), day=self.published.day, slug=self.slug))
 
     @property
     def next(self):
